@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="smses">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="sms"/>
+        <xs:element maxOccurs="unbounded" ref="mms"/>
+      </xs:sequence>
+      <xs:attribute name="backup_date" use="required" type="xs:integer"/>
+      <xs:attribute name="backup_set" use="required"/>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sms">
+    <xs:complexType>
+      <xs:attribute name="address" use="required" type="xs:integer"/>
+      <xs:attribute name="body" use="required"/>
+      <xs:attribute name="contact_name" use="required"/>
+      <xs:attribute name="date" use="required" type="xs:integer"/>
+      <xs:attribute name="date_sent" use="required" type="xs:integer"/>
+      <xs:attribute name="locked" use="required" type="xs:integer"/>
+      <xs:attribute name="protocol" use="required" type="xs:integer"/>
+      <xs:attribute name="read" use="required" type="xs:integer"/>
+      <xs:attribute name="readable_date" use="required"/>
+      <xs:attribute name="sc_toa" use="required" type="xs:NCName"/>
+      <xs:attribute name="service_center" use="required"/>
+      <xs:attribute name="status" use="required" type="xs:integer"/>
+      <xs:attribute name="sub_id" use="required" type="xs:integer"/>
+      <xs:attribute name="subject" use="required" type="xs:NCName"/>
+      <xs:attribute name="toa" use="required" type="xs:NCName"/>
+      <xs:attribute name="type" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mms">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="parts"/>
+        <xs:element ref="addrs"/>
+      </xs:sequence>
+      <xs:attribute name="_id" use="required" type="xs:integer"/>
+      <xs:attribute name="address" use="required"/>
+      <xs:attribute name="contact_name" use="required"/>
+      <xs:attribute name="creator" use="required"/>
+      <xs:attribute name="ct_cls" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="ct_l" use="required" type="xs:anyURI"/>
+      <xs:attribute name="ct_t" use="required"/>
+      <xs:attribute name="d_rpt" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="d_tm" use="required" type="xs:NCName"/>
+      <xs:attribute name="date" use="required" type="xs:integer"/>
+      <xs:attribute name="date_sent" use="required" type="xs:integer"/>
+      <xs:attribute name="exp" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="locked" use="required" type="xs:integer"/>
+      <xs:attribute name="m_cls" use="required" type="xs:NCName"/>
+      <xs:attribute name="m_id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="m_size" use="required" type="xs:integer"/>
+      <xs:attribute name="m_type" use="required" type="xs:integer"/>
+      <xs:attribute name="msg_box" use="required" type="xs:integer"/>
+      <xs:attribute name="pri" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="read" use="required" type="xs:integer"/>
+      <xs:attribute name="read_status" use="required" type="xs:NCName"/>
+      <xs:attribute name="readable_date" use="required"/>
+      <xs:attribute name="resp_st" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="resp_txt" use="required" type="xs:NCName"/>
+      <xs:attribute name="retr_st" use="required" type="xs:NCName"/>
+      <xs:attribute name="retr_txt" use="required" type="xs:NCName"/>
+      <xs:attribute name="retr_txt_cs" use="required" type="xs:NCName"/>
+      <xs:attribute name="rpt_a" use="required" type="xs:NCName"/>
+      <xs:attribute name="rr" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="seen" use="required" type="xs:integer"/>
+      <xs:attribute name="st" use="required" type="xs:NCName"/>
+      <xs:attribute name="sub" use="required"/>
+      <xs:attribute name="sub_cs" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="sub_id" use="required" type="xs:integer"/>
+      <xs:attribute name="text_only" use="required" type="xs:integer"/>
+      <xs:attribute name="tr_id" use="required" type="xs:anyURI"/>
+      <xs:attribute name="v" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="parts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="part"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="part">
+    <xs:complexType>
+      <xs:attribute name="cd" use="required" type="xs:NCName"/>
+      <xs:attribute name="chset" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="cid" use="required"/>
+      <xs:attribute name="cl" use="required"/>
+      <xs:attribute name="ct" use="required"/>
+      <xs:attribute name="ctt_s" use="required" type="xs:NCName"/>
+      <xs:attribute name="ctt_t" use="required" type="xs:NCName"/>
+      <xs:attribute name="data" type="xs:base64Binary"/>
+      <xs:attribute name="fn" use="required" type="xs:NCName"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="seq" use="required" type="xs:integer"/>
+      <xs:attribute name="sub_id" use="required" type="xs:integer"/>
+      <xs:attribute name="text" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addrs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="addr"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addr">
+    <xs:complexType>
+      <xs:attribute name="address" use="required"/>
+      <xs:attribute name="charset" use="required" type="xs:integer"/>
+      <xs:attribute name="type" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
