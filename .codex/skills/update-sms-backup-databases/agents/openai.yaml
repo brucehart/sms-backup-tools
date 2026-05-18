@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update SMS Backup Databases"
+  short_description: "Import SMS backups into SQLite"
+  default_prompt: "Use $update-sms-backup-databases to update the local SMS backup databases from the newest XML exports."
