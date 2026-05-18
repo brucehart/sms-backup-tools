@@ -153,6 +153,7 @@ SELECT
 FROM {SIGNATURE_TABLE_NAME}
 ORDER BY id
 """
+UTIME_WARNING_EMITTED = False
 
 
 def eprint(*parts: object) -> None:
@@ -1095,11 +1096,18 @@ def index_reference_images(
 
 
 def save_bytes(path: Path, payload: bytes, timestamp: Optional[dt.datetime] = None) -> None:
+    global UTIME_WARNING_EMITTED
+
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(payload)
     if timestamp is not None:
         epoch = timestamp.timestamp()
-        os.utime(path, (epoch, epoch))
+        try:
+            os.utime(path, (epoch, epoch))
+        except OSError as exc:
+            if not UTIME_WARNING_EMITTED:
+                eprint(f"Could not set extracted file timestamps on this filesystem: {exc}")
+                UTIME_WARNING_EMITTED = True
 
 
 def process_xml(
